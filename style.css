@@ -82,33 +82,33 @@ ul {
 /* Specific Section Adjustments */
 .contact-info p,
 .experience p,
-.certificate p { /* Added certificate for consistency */
+.certificate p {
     margin-bottom: 10px;
 }
 
 /* About Me Section - Initial Hidden State */
 #about.about-hidden {
-    max-height: 0; /* Hides content */
-    opacity: 0;    /* Makes it fully transparent */
-    overflow: hidden; /* Hides overflowing content during transition */
-    padding-top: 0; /* Remove padding when hidden */
-    padding-bottom: 0; /* Remove padding when hidden */
-    margin-top: 0; /* Collapse margin when hidden */
-    margin-bottom: 0; /* Collapse margin when hidden */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* About Me Section - Visible State (Default when not 'about-hidden') */
 #about:not(.about-hidden) {
-    max-height: 1000px; /* A value larger than expected content height */
+    max-height: 1000px;
     opacity: 1;
-    padding: 30px; /* Restore original padding */
-    margin: 30px auto; /* Restore original margin */
+    padding: 30px;
+    margin: 30px auto;
 }
 
-/* Show About Me Button Styling */
-#about-toggle {
+/* --- General Action Button Styling (for about-toggle and buy-coffee-toggle-button) --- */
+.action-button {
     display: block; /* Makes it a block element to allow margin:auto for centering */
-    margin: 20px auto; /* Centers the button horizontally */
+    margin: 20px auto; /* Centers the button horizontally and adds space */
     padding: 10px 20px;
     font-size: 1rem;
     cursor: pointer;
@@ -116,13 +116,119 @@ ul {
     color: white;
     border: none;
     border-radius: 5px;
+    text-align: center; /* Ensures text is centered for <a> tag */
+    text-decoration: none; /* Removes underline for <a> tag */
     transition: background-color 0.3s ease;
 }
 
-#about-toggle:hover {
+.action-button:hover {
     background-color: #1a3b4a;
 }
 
+/* Coffee Icon within the "Buy me a Coffee" button */
+#buy-coffee-toggle-button .coffee-icon {
+    margin-right: 8px; /* Space between icon and text */
+    font-size: 1.2em; /* Slightly larger icon */
+    vertical-align: middle; /* Align icon nicely with text */
+    display: inline-block; /* Allows margin-right to work */
+    transform: translateY(-1px); /* Slight vertical adjustment */
+}
+
+/* --- Payment Options Container (now also used for donations.html) --- */
+#payment-options-container {
+    max-width: 800px; /* Accommodates 3 columns nicely */
+    margin: 30px auto; /* Center it, good for a standalone page */
+    padding: 25px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Center overall content inside */
+}
+
+
+#payment-options-container h3 {
+    font-size: 1.5rem;
+    color: #2c5364;
+    margin-bottom: 15px;
+}
+
+#payment-options-container p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* --- QR Note Section (UPDATED) --- */
+.qr-note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 25px;
+    background-color: #f0f8ff;
+    border-left: 5px solid #2c5364;
+    padding: 10px 15px;
+    border-radius: 5px;
+    
+    /* Flexbox for the note parts */
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap onto new lines */
+    /* REMOVED: justify-content: space-between; */ /* This was pushing content to the right */
+    justify-content: flex-start; /* Explicitly align to the left */
+    align-items: flex-start; /* Aligns content to the top within the flex line */
+    line-height: 1.4; /* Slightly tighter line height for the note */
+}
+
+.note-part {
+    margin: 0; /* Remove default paragraph margins */
+    padding: 0; /* Remove default paragraph padding */
+    flex: 1 1 auto; /* Allows parts to grow/shrink based on content */
+    min-width: 25%; /* A base width, allows parts to sit next to each other */
+    box-sizing: border-box; /* Include padding/border in width calculation */
+    text-align: left; /* Default and desired alignment */
+}
+
+.note-part.note-name {
+    /* REMOVED: text-align: right; */ /* This was aligning the name to the right */
+    /* It will now inherit text-align: left from .note-part */
+}
+
+/* Grid layout for payment links (horizontal) */
+.payment-links-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 3 columns on large screens, wraps to 2 or 1 on smaller */
+    gap: 20px; /* Space between grid items */
+    margin-top: 20px;
+    justify-content: center; /* Centers items if they don't fill the row */
+}
+
+.payment-option-item {
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center; /* Ensures content within each item is centered */
+}
+
+.payment-option-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.qr-code-img {
+    max-width: 150px; /* Adjust size of QR code images */
+    height: auto;
+    border: 1px solid #eee; /* Subtle border for QR codes */
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 15px; /* Space between QR and number/link */
+    display: block; /* Make it block to center with margin auto */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.payment-detail {
+    font-size: 0.95rem; /* Smaller font for details */
+    word-break: break-all; /* Break long links/numbers if needed */
+}
 
 /* ====================
    3. Dark Mode Styles
@@ -147,8 +253,39 @@ ul {
 
 /* Dark Mode adjustment for Date and Time */
 .dark-mode header #dateTime {
-    color: rgba(255, 255, 255, 0.7); /* Adjust slightly for dark mode header background if needed */
+    color: rgba(255, 255, 255, 0.7);
 }
+
+/* Dark Mode for Payment Options */
+.dark-mode #payment-options-container {
+    background: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode #payment-options-container h3 {
+    color: #9ecfff;
+}
+
+/* Dark Mode for QR Note (UPDATED) */
+.dark-mode .qr-note {
+    background-color: #2a2a2a;
+    border-left-color: #9ecfff;
+    color: #ccc;
+}
+
+.dark-mode .payment-option-item {
+    background-color: #2a2a2a;
+    border-color: #333;
+}
+
+.dark-mode .payment-option-item:hover {
+    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .qr-code-img {
+    border-color: #333;
+}
+
 
 /* ====================
    4. Animations & Effects
@@ -168,23 +305,23 @@ ul {
 
 /* Theme Toggle Button specific styling */
 #theme-toggle {
-    position: fixed; /* Keeps the button in place while scrolling */
-    top: 20px;       /* 20px from the top */
-    right: 20px;     /* 20px from the right for upper right side */
-    width: 70px;     /* Width for oblong shape */
-    height: 40px;    /* Height for oblong shape */
-    border-radius: 20px; /* Half of height for a pill/oblong shape */
-    background-color: #ccc; /* Default light mode background */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 70px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #ccc;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: 0; /* Remove default button padding */
-    overflow: hidden; /* Crucial for icon transition */
+    padding: 0;
+    overflow: hidden;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    z-index: 1000; /* Ensure it stays on top of other content */
+    z-index: 1000;
 }
 
 #theme-toggle:hover {
@@ -193,44 +330,44 @@ ul {
 
 /* Icons within the theme toggle button */
 #theme-toggle svg {
-    width: 28px; /* Size of the SVG icons */
+    width: 28px;
     height: 28px;
-    position: absolute; /* Allows precise positioning of icons within the button */
+    position: absolute;
     transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
 }
 
 /* Default (light mode) icon colors and glow */
 #theme-toggle .sun-icon {
-    fill: #FFD700; /* Golden color for the sun */
+    fill: #FFD700;
     opacity: 1;
-    transform: translateX(0); /* Sun is centered */
-    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); /* Yellow glow for sun */
+    transform: translateX(0);
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8));
 }
 
 #theme-toggle .moon-icon {
-    fill: #ADD8E6; /* Light blue color for the moon */
+    fill: #ADD8E6;
     opacity: 0;
-    transform: translateX(100%); /* Moon is initially off to the right */
-    filter: none; /* No glow for hidden moon */
+    transform: translateX(100%);
+    filter: none;
 }
 
 /* Dark Mode specific styles for the theme toggle button */
 .dark-mode #theme-toggle {
-    background-color: #555; /* Dark mode background for the toggle */
+    background-color: #555;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* Dark Mode icon visibility and glow */
 .dark-mode #theme-toggle .sun-icon {
     opacity: 0;
-    transform: translateX(-100%); /* Sun moves off to the left and disappears */
-    filter: none; /* No glow for hidden sun */
+    transform: translateX(-100%);
+    filter: none;
 }
 
 .dark-mode #theme-toggle .moon-icon {
     opacity: 1;
-    transform: translateX(0); /* Moon moves into center and appears */
-    filter: drop-shadow(0 0 8px rgba(173, 216, 230, 0.8)); /* Light blue/white glow for moon */
+    transform: translateX(0);
+    filter: drop-shadow(0 0 8px rgba(173, 216, 230, 0.8));
 }
 
 /* Glow on Hover (Applied to .glow-on-hover class) */
@@ -239,18 +376,28 @@ ul {
 }
 
 .glow-on-hover:hover {
-    box-shadow: 0 0 12px 4px rgba(0, 123, 255, 0.6); /* Blue glow on hover */
-    border-radius: 10px; /* Keep consistent border-radius */
+    box-shadow: 0 0 12px 4px rgba(0, 123, 255, 0.6);
+    border-radius: 10px;
 }
 
 /* Glow on Click (Applied to .glow-on-click.clicked class) */
 .glow-on-click.clicked {
-    box-shadow: 0 0 18px 6px rgba(255, 165, 0, 0.8); /* Orange glow on click */
-    border-radius: 10px; /* Keep consistent border-radius */
-    transition: box-shadow 0.2s ease; /* Faster transition for click feedback */
+    box-shadow: 0 0 18px 6px rgba(255, 165, 0, 0.8);
+    border-radius: 10px;
+    transition: box-shadow 0.2s ease;
 }
 
 /* Responsive Styles */
+@media (max-width: 768px) {
+    .payment-links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Allow smaller items on tablet */
+        gap: 15px;
+    }
+    .qr-note .note-part {
+        min-width: 45%; /* Two columns for the note on tablets */
+    }
+}
+
 @media (max-width: 600px) {
     header h1 {
         font-size: 2rem;
@@ -258,5 +405,25 @@ ul {
 
     section {
         padding: 20px;
+    }
+
+    /* Further adjust payment options for very small screens */
+    .payment-links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* More aggressive min-width for phone */
+        gap: 10px;
+    }
+
+    .qr-code-img {
+        max-width: 100px; /* Make QR codes a bit smaller on tiny screens */
+    }
+
+    #payment-options-container {
+        max-width: 90%; /* Allow it to take more width on small screens */
+    }
+
+    /* Force the note parts to stack vertically on small phones */
+    .qr-note .note-part {
+        min-width: 100%; /* Each part takes full width */
+        text-align: left !important; /* Ensure left alignment when stacked */
     }
 }
