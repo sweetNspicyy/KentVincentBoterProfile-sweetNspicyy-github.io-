@@ -36,21 +36,19 @@ function toggleAboutSection() {
     const toggleBtn = document.getElementById("about-toggle");
 
     // Toggle the 'about-hidden' class.
-    // toggle() returns true if the class is now present (i.e., section is now hidden)
     const isNowHidden = aboutSection.classList.toggle("about-hidden");
 
     if (isNowHidden) {
-        toggleBtn.innerText = "Show About Me"; // Section is now hidden, so button should offer to show it
+        toggleBtn.innerText = "Show About Me";
     } else {
-        toggleBtn.innerText = "Hide About Me"; // Section is now visible, so button should offer to hide it
+        toggleBtn.innerText = "Hide About Me";
     }
 }
 
 // Function to handle fade-in effect on scroll for sections
 function fadeInOnScroll() {
-    document.querySelectorAll("section:not(#about)").forEach(section => { // Exclude #about section as its visibility is toggled by button
+    document.querySelectorAll("section:not(#about)").forEach(section => {
         const rect = section.getBoundingClientRect();
-        // Trigger animation when the top of the section is within 100px from the bottom of the viewport
         if (rect.top < window.innerHeight - 100) {
             section.classList.add("visible");
         }
@@ -64,55 +62,48 @@ function fadeInOnScroll() {
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Date and Time ---
-    updateDateTime(); // Call once immediately on load
-    setInterval(updateDateTime, 1000); // Update every second
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
 
     // --- Dark/Light Mode Toggle ---
     const themeToggleBtn = document.getElementById('theme-toggle');
-    
-    // Check for saved theme in localStorage on page load
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-        setTheme(savedTheme); // Apply the saved theme
+        setTheme(savedTheme);
     } else {
-        // If no theme saved, DEFAULT TO DARK MODE
-        setTheme('dark-mode'); 
+        setTheme('dark-mode'); // Default to dark mode if no preference saved
     }
-
-    // Add event listener to the theme toggle button
     themeToggleBtn.addEventListener('click', () => {
         if (document.body.classList.contains('dark-mode')) {
-            setTheme('light-mode'); // Switch to light
+            setTheme('light-mode');
         } else {
-            setTheme('dark-mode'); // Switch to dark
+            setTheme('dark-mode');
         }
     });
 
     // --- Show/Hide About Section ---
-    // Get reference to the about toggle button
     const aboutToggleBtn = document.getElementById('about-toggle');
-    // Add event listener to toggle the about section
     aboutToggleBtn.addEventListener('click', toggleAboutSection);
 
+    // --- Buy me a Coffee / Payment Options Toggle ---
+    // This section is now simpler because the button is a direct link
+    // The payment options container is no longer on this page,
+    // so we remove the related JS logic.
+    // The `<a>` tag's `target="_blank"` handles opening the new tab.
+
+
     // --- Scroll Animation ---
-    // Add fade-in class initially to all sections (prepares them for animation)
-    // IMPORTANT: Exclude the #about section here as its visibility is handled by the toggle button
     document.querySelectorAll("section:not(#about)").forEach(section => section.classList.add("fade-in"));
-    
-    // Attach scroll event listener
     window.addEventListener("scroll", fadeInOnScroll);
-    
-    // Run on load to check initial visibility for sections already in view
     fadeInOnScroll();
 
     // --- Glow on Click Effect ---
-    // Apply the 'clicked' class temporarily on click for visual feedback
     document.querySelectorAll('.glow-on-click').forEach(element => {
         element.addEventListener('click', () => {
             element.classList.add('clicked');
             setTimeout(() => {
                 element.classList.remove('clicked');
-            }, 400); // Remove 'clicked' class after 400ms (matches CSS transition)
+            }, 400);
         });
     });
 });
