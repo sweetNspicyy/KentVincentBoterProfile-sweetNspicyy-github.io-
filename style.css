@@ -198,7 +198,8 @@ ul {
 /* Grid layout for payment links (horizontal arrangement of QR codes) */
 .payment-links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 3 columns on large screens, wraps to 2 or 1 on smaller */
+    /* ADJUSTED LINE BELOW: Reduced minmax to allow columns to shrink more */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Attempt to keep 3 columns, even on smaller screens */
     gap: 20px; /* Space between grid items */
     margin-top: 20px;
     justify-content: center; /* Centers items if they don't fill the row */
@@ -396,10 +397,15 @@ ul {
    ========================================================================== */
 
 @media (max-width: 768px) {
-    .payment-links-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Allow smaller items on tablet */
+    /* REMOVED: This media query was forcing 2 columns for .payment-links-grid,
+       but the new minmax(100px, 1fr) might handle it better for 3 columns.
+       We'll let the main grid rule manage it.
+       If you still want a strict 2-column on tablets, you can uncomment/adjust this. */
+    /* .payment-links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         gap: 15px;
-    }
+    } */
+
     .qr-note .note-part {
         min-width: 45%; /* Two columns for the note on tablets */
     }
@@ -415,10 +421,14 @@ ul {
     }
 
     /* Further adjust payment options for very small screens */
-    .payment-links-grid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* More aggressive min-width for phone */
+    /* REMOVED: This media query was adjusting payment-links-grid for phones.
+       The main grid rule with minmax(100px, 1fr) should now aim for 3 columns
+       even on smaller phones, making them narrower.
+       If you want them to stack on very small phones, this would need to be re-added. */
+    /* .payment-links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 10px;
-    }
+    } */
 
     .qr-code-img {
         max-width: 100px; /* Make QR codes a bit smaller on tiny screens */
