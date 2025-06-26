@@ -47,6 +47,15 @@ header p {
     margin-top: 10px;
 }
 
+/* Professional Date and Time Styling */
+header #dateTime {
+    font-size: 0.95rem; /* Slightly smaller font size */
+    color: rgba(255, 255, 255, 0.8); /* Muted white for better contrast but not harsh */
+    margin-top: 15px; /* Add some space above it */
+    font-weight: 300; /* Use a lighter font weight from Poppins for subtlety */
+    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+}
+
 /* All Sections Base Style */
 section {
     max-width: 1000px;
@@ -96,7 +105,6 @@ ul {
     margin: 30px auto; /* Restore original margin */
 }
 
-
 /* Show About Me Button Styling */
 #about-toggle {
     display: block; /* Makes it a block element to allow margin:auto for centering */
@@ -135,6 +143,11 @@ ul {
 
 .dark-mode a {
     color: #9ecfff;
+}
+
+/* Dark Mode adjustment for Date and Time */
+.dark-mode header #dateTime {
+    color: rgba(255, 255, 255, 0.7); /* Adjust slightly for dark mode header background if needed */
 }
 
 /* ====================
