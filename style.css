@@ -1,6 +1,13 @@
-/* ====================
+/* ==========================================================================
+   Project: Kent Vincent Boter's Portfolio
+   Author: Kent Vincent Boter
+   Description: Main stylesheet for the portfolio website,
+                including base styles, layout, components, and responsive design.
+   ========================================================================== */
+
+/* ==========================================================================
    1. Global Reset and Base Styles
-   ==================== */
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -25,11 +32,11 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ====================
+/* ==========================================================================
    2. Layout and Component Styles
-   ==================== */
+   ========================================================================== */
 
-/* Header */
+/* Header Section */
 header {
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
     color: white;
@@ -79,14 +86,14 @@ ul {
     list-style-type: disc;
 }
 
-/* Specific Section Adjustments */
+/* Specific Section Adjustments (Work Experience, Certificate, Contact) */
 .contact-info p,
 .experience p,
 .certificate p {
     margin-bottom: 10px;
 }
 
-/* About Me Section - Initial Hidden State */
+/* About Me Section - Toggle Visibility */
 #about.about-hidden {
     max-height: 0;
     opacity: 0;
@@ -97,9 +104,8 @@ ul {
     margin-bottom: 0;
 }
 
-/* About Me Section - Visible State (Default when not 'about-hidden') */
-#about:not(.about-hidden) {
-    max-height: 1000px;
+#about:not(.about-hidden) { /* Visible state */
+    max-height: 1000px; /* Arbitrary large value to allow content to show */
     opacity: 1;
     padding: 30px;
     margin: 30px auto;
@@ -134,7 +140,9 @@ ul {
     transform: translateY(-1px); /* Slight vertical adjustment */
 }
 
-/* --- Payment Options Container (now also used for donations.html) --- */
+/* ==========================================================================
+   3. Payment Options Section (for donations.html)
+   ========================================================================== */
 #payment-options-container {
     max-width: 800px; /* Accommodates 3 columns nicely */
     margin: 30px auto; /* Center it, good for a standalone page */
@@ -144,7 +152,6 @@ ul {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center; /* Center overall content inside */
 }
-
 
 #payment-options-container h3 {
     font-size: 1.5rem;
@@ -157,7 +164,7 @@ ul {
     line-height: 1.5;
 }
 
-/* --- QR Note Section (UPDATED) --- */
+/* QR Note Section */
 .qr-note {
     font-size: 0.9rem;
     color: #666;
@@ -167,12 +174,11 @@ ul {
     padding: 10px 15px;
     border-radius: 5px;
     
-    /* Flexbox for the note parts */
+    /* Flexbox for the note parts: Aligns all parts to the left and allows wrapping */
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap onto new lines */
-    /* REMOVED: justify-content: space-between; */ /* This was pushing content to the right */
-    justify-content: flex-start; /* Explicitly align to the left */
-    align-items: flex-start; /* Aligns content to the top within the flex line */
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Aligns content to the start (left) */
+    align-items: flex-start; /* Aligns items to the top within the flex line */
     line-height: 1.4; /* Slightly tighter line height for the note */
 }
 
@@ -180,17 +186,16 @@ ul {
     margin: 0; /* Remove default paragraph margins */
     padding: 0; /* Remove default paragraph padding */
     flex: 1 1 auto; /* Allows parts to grow/shrink based on content */
-    min-width: 25%; /* A base width, allows parts to sit next to each other */
+    min-width: 25%; /* A base width, allows parts to sit next to each other, wraps if content is too long */
     box-sizing: border-box; /* Include padding/border in width calculation */
-    text-align: left; /* Default and desired alignment */
+    text-align: left; /* Ensures text within each part is left-aligned */
 }
 
 .note-part.note-name {
-    /* REMOVED: text-align: right; */ /* This was aligning the name to the right */
-    /* It will now inherit text-align: left from .note-part */
+    /* No specific alignment needed here, it inherits from .note-part */
 }
 
-/* Grid layout for payment links (horizontal) */
+/* Grid layout for payment links (horizontal arrangement of QR codes) */
 .payment-links-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 3 columns on large screens, wraps to 2 or 1 on smaller */
@@ -230,9 +235,9 @@ ul {
     word-break: break-all; /* Break long links/numbers if needed */
 }
 
-/* ====================
-   3. Dark Mode Styles
-   ==================== */
+/* ==========================================================================
+   4. Dark Mode Styles
+   ========================================================================== */
 .dark-mode {
     background: #121212;
     color: #e0e0e0;
@@ -266,7 +271,7 @@ ul {
     color: #9ecfff;
 }
 
-/* Dark Mode for QR Note (UPDATED) */
+/* Dark Mode for QR Note */
 .dark-mode .qr-note {
     background-color: #2a2a2a;
     border-left-color: #9ecfff;
@@ -286,12 +291,11 @@ ul {
     border-color: #333;
 }
 
+/* ==========================================================================
+   5. Animations & Effects
+   ========================================================================== */
 
-/* ====================
-   4. Animations & Effects
-   ==================== */
-
-/* Fade-in Scroll Animation for other sections */
+/* Fade-in Scroll Animation for sections */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -387,7 +391,10 @@ ul {
     transition: box-shadow 0.2s ease;
 }
 
-/* Responsive Styles */
+/* ==========================================================================
+   6. Responsive Styles (Media Queries)
+   ========================================================================== */
+
 @media (max-width: 768px) {
     .payment-links-grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Allow smaller items on tablet */
