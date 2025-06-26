@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Support Kent Vincent Boter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" /> <link rel="icon" type="image/png" href="WebPicTabPP.png">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark-mode') {
+                document.body.classList.add('dark-mode');
+            } else {
+                // Default to light mode if not explicitly dark or no preference
+                document.body.classList.remove('dark-mode'); 
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <div id="payment-options-container" class="glow-on-hover">
+        <h3>Support Options:</h3>
+        <p>Your support fuels my learning and projects!</p>
+
+        <div class="qr-note">
+            <p class="note-part">**Note:** While QR codes are displayed, they are not currently available for scanning.</p>
+            <p class="note-part">Please send your donation manually to the number/link provided below each QR.</p>
+            <p class="note-part note-name">GCash&Paymaya Name: <strong>Kent Vincent Boter</strong>.</p>
+        </div>
+
+        <div class="payment-links-grid">
+            <div class="payment-option-item">
+                <p><strong>PayPal:</strong> Scan to Pay</p>
+                <img src="paypal-qr.png" alt="PayPal QR Code" class="qr-code-img">
+                <p class="payment-detail"><a href="https://paypal.me/lKentVincentl" target="_blank">paypal.me/lKentVincentl</a></p>
+            </div>
+            
+            <div class="payment-option-item">
+                <p><strong>GCash:</strong> Scan to Pay</p>
+                <img src="gcash-qr.png" alt="GCash QR Code" class="qr-code-img">
+                <p class="payment-detail">Number: <a href="tel:+639151990459">0915 199 0459</a></p>
+            </div>
+
+            <div class="payment-option-item">
+                <p><strong>PayMaya:</strong> Scan to Pay</p>
+                <img src="paymaya-qr.png" alt="PayMaya QR Code" class="qr-code-img">
+                <p class="payment-detail">Number: <a href="tel:+639151990459">0915 199 0459</a></p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
