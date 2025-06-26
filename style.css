@@ -1,0 +1,249 @@
+/* ====================
+   1. Global Reset and Base Styles
+   ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f2f5f9;
+    color: #333;
+    line-height: 1.6;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+a {
+    color: #2c5364;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ====================
+   2. Layout and Component Styles
+   ==================== */
+
+/* Header */
+header {
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* All Sections Base Style */
+section {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Base transition for dark mode, but also include for max-height/opacity */
+    transition: background 0.3s ease, color 0.3s ease, max-height 0.7s ease-out, opacity 0.7s ease-out, padding 0.7s ease-out;
+}
+
+section h2 {
+    font-size: 1.8rem;
+    color: #2c5364;
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+/* Specific Section Adjustments */
+.contact-info p,
+.experience p,
+.certificate p { /* Added certificate for consistency */
+    margin-bottom: 10px;
+}
+
+/* About Me Section - Initial Hidden State */
+#about.about-hidden {
+    max-height: 0; /* Hides content */
+    opacity: 0;    /* Makes it fully transparent */
+    overflow: hidden; /* Hides overflowing content during transition */
+    padding-top: 0; /* Remove padding when hidden */
+    padding-bottom: 0; /* Remove padding when hidden */
+    margin-top: 0; /* Collapse margin when hidden */
+    margin-bottom: 0; /* Collapse margin when hidden */
+}
+
+/* About Me Section - Visible State (Default when not 'about-hidden') */
+#about:not(.about-hidden) {
+    max-height: 1000px; /* A value larger than expected content height */
+    opacity: 1;
+    padding: 30px; /* Restore original padding */
+    margin: 30px auto; /* Restore original margin */
+}
+
+
+/* Show About Me Button Styling */
+#about-toggle {
+    display: block; /* Makes it a block element to allow margin:auto for centering */
+    margin: 20px auto; /* Centers the button horizontally */
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #2c5364;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#about-toggle:hover {
+    background-color: #1a3b4a;
+}
+
+
+/* ====================
+   3. Dark Mode Styles
+   ==================== */
+.dark-mode {
+    background: #121212;
+    color: #e0e0e0;
+}
+
+.dark-mode header {
+    background: linear-gradient(to right, #000000, #1f1f1f, #333333);
+}
+
+.dark-mode section {
+    background: #1e1e1e;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode a {
+    color: #9ecfff;
+}
+
+/* ====================
+   4. Animations & Effects
+   ==================== */
+
+/* Fade-in Scroll Animation for other sections */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Theme Toggle Button specific styling */
+#theme-toggle {
+    position: fixed; /* Keeps the button in place while scrolling */
+    top: 20px;       /* 20px from the top */
+    right: 20px;     /* 20px from the right for upper right side */
+    width: 70px;     /* Width for oblong shape */
+    height: 40px;    /* Height for oblong shape */
+    border-radius: 20px; /* Half of height for a pill/oblong shape */
+    background-color: #ccc; /* Default light mode background */
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 0; /* Remove default button padding */
+    overflow: hidden; /* Crucial for icon transition */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000; /* Ensure it stays on top of other content */
+}
+
+#theme-toggle:hover {
+    opacity: 0.9;
+}
+
+/* Icons within the theme toggle button */
+#theme-toggle svg {
+    width: 28px; /* Size of the SVG icons */
+    height: 28px;
+    position: absolute; /* Allows precise positioning of icons within the button */
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Default (light mode) icon colors and glow */
+#theme-toggle .sun-icon {
+    fill: #FFD700; /* Golden color for the sun */
+    opacity: 1;
+    transform: translateX(0); /* Sun is centered */
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.8)); /* Yellow glow for sun */
+}
+
+#theme-toggle .moon-icon {
+    fill: #ADD8E6; /* Light blue color for the moon */
+    opacity: 0;
+    transform: translateX(100%); /* Moon is initially off to the right */
+    filter: none; /* No glow for hidden moon */
+}
+
+/* Dark Mode specific styles for the theme toggle button */
+.dark-mode #theme-toggle {
+    background-color: #555; /* Dark mode background for the toggle */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+/* Dark Mode icon visibility and glow */
+.dark-mode #theme-toggle .sun-icon {
+    opacity: 0;
+    transform: translateX(-100%); /* Sun moves off to the left and disappears */
+    filter: none; /* No glow for hidden sun */
+}
+
+.dark-mode #theme-toggle .moon-icon {
+    opacity: 1;
+    transform: translateX(0); /* Moon moves into center and appears */
+    filter: drop-shadow(0 0 8px rgba(173, 216, 230, 0.8)); /* Light blue/white glow for moon */
+}
+
+/* Glow on Hover (Applied to .glow-on-hover class) */
+.glow-on-hover {
+    transition: box-shadow 0.3s ease;
+}
+
+.glow-on-hover:hover {
+    box-shadow: 0 0 12px 4px rgba(0, 123, 255, 0.6); /* Blue glow on hover */
+    border-radius: 10px; /* Keep consistent border-radius */
+}
+
+/* Glow on Click (Applied to .glow-on-click.clicked class) */
+.glow-on-click.clicked {
+    box-shadow: 0 0 18px 6px rgba(255, 165, 0, 0.8); /* Orange glow on click */
+    border-radius: 10px; /* Keep consistent border-radius */
+    transition: box-shadow 0.2s ease; /* Faster transition for click feedback */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    section {
+        padding: 20px;
+    }
+}
