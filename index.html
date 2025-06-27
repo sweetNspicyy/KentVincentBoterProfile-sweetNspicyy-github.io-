@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kent Vincent Boter | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="WebPicTabPP.png">
+    <link rel="stylesheet" href="style.css" /> <link rel="icon" type="image/png" href="WebPicTabPP.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
     <header class="glow-on-hover glow-on-click">
         <h1>Welcome to My Portfolio</h1>
-        <p>Hello! I’m <strong>Kent Vincent Boter</strong>, a Computer Engineering student passionate about coding and technology.</p>
+        <p>Hello! I’m <strong>Kent Vincent Boter</strong>, a Computer Engineering student passionate about crafting innovative solutions.</p>
         <p id="dateTime"></p> 
         
         <button id="theme-toggle" aria-label="Toggle light and dark mode" class="glow-on-hover glow-on-click">
@@ -25,57 +25,317 @@
         </button>
     </header>
 
-    <button id="about-toggle" class="glow-on-hover glow-on-click action-button">Show About Me</button>
+    <nav class="main-nav glow-on-hover">
+        <a href="#projects" class="nav-button glow-on-click">Projects</a>
+        <a href="#skills" class="nav-button glow-on-click">Skills</a>
+        <a href="#education" class="nav-button glow-on-click">Education</a>
+        <a href="#experience" class="nav-button glow-on-click">Experience</a>
+        <a href="#certificates" class="nav-button glow-on-click">Certificates</a>
+        <a href="#languages" class="nav-button glow-on-click">Languages</a>
+        <a href="#testimonials" class="nav-button glow-on-click">Testimonials</a>
+        <a href="#articles" class="nav-button glow-on-click">Articles</a> 
+        <a href="#contact" class="nav-button glow-on-click">Contact</a>
+    </nav>
 
-    <a href="donations.html" target="_blank" id="buy-coffee-toggle-button" class="glow-on-hover glow-on-click action-button">
-        <span class="coffee-icon">☕</span>
-        Buy me a Coffee
-    </a>
+    <main>
+        <button id="about-toggle" class="glow-on-hover glow-on-click action-button">Show About Me</button>
+        <a href="donations.html" target="_blank" id="buy-coffee-toggle-button" class="glow-on-hover glow-on-click action-button">
+            <span class="coffee-icon">☕</span> Buy me a Coffee
+        </a>
 
-    <section id="about" class="about-hidden glow-on-hover glow-on-click"> 
-        <h2>About Me</h2>
-        <p>I’m Kent Vincent Boter, a passionate Computer Engineering student driven by curiosity and creativity. I’m eager to learn and grow in the world of software development — from web technologies to real-world systems. Let’s build something awesome together.</p>
-    </section>
+        <section id="about" class="about-hidden glow-on-hover glow-on-click"> 
+            <h2>About Me</h2>
+            <p>Hello! I’m <strong>Kent Vincent Boter</strong>, a passionate Computer Engineering student with a deep fascination for both the tangible and intangible aspects of technology. My journey is fueled by a desire to bridge the gap between hardware innovation and robust software solutions.</p>
+            <p>I thrive on breaking down complex problems, whether it's designing intricate circuits or crafting elegant code. I'm constantly exploring new concepts in embedded systems, data structures, and algorithms, eager to contribute my skills to impactful projects that push the boundaries of what's possible.</p>
+            <p>My goal is to evolve into a versatile engineer who can architect entire systems from the ground up, ensuring seamless integration and optimal performance.</p>
+            <p>Let's connect and build the future, one circuit and one line of code at a time!</p>
+        </section>
 
-    <section class="glow-on-hover glow-on-click">
-        <h2>Skills</h2>
+       <section id="contact-form" class="fade-in about-hidden glow-on-hover glow-on-click">
+        <h2>Contact Me</h2>
+
+        <div class="contact-details">
+            <h3>Get in Touch Directly:</h3>
+            <p>
+                <i class="fas fa-envelope"></i> Email: <a href="mailto:kentvincentboter444@gmail.com">kentvincentboter444@gmail.com</a>
+            </p>
+            <p>
+                <i class="fas fa-phone-alt"></i> Phone: <a href="tel:+639386995901">0938 699 5901</a>
+            </p>
+            <p>
+                <i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/kent-vincent-boter-/" target="_blank" rel="noopener noreferrer">Kent Vincent Boter's Profile</a>
+            </p>
+            <p>
+                <i class="fab fa-github"></i> GitHub: <a href="https://github.com/sweetNspicyy" target="_blank" rel="noopener noreferrer">sweetNspicyy Profile</a>
+            </p>
+            <p>
+                <i class="fab fa-facebook"></i> Facebook: <a href="https://web.facebook.com/vincent.park.7921/" target="_blank" rel="noopener noreferrer">Kent Vincent I. Boter</a>
+                </p>
+            <p>
+                <i class="fas fa-file-download"></i> Resume: <a href="/path/to/your/resume.pdf" download="Kent_Vincent_Boter_Resume.pdf">Download My Resume</a>
+                </p>
+        </div>
+
+        </section>
+
+        <section id="projects" class="fade-in glow-on-hover glow-on-click">
+            <h2>My Projects</h2>
+            <p>A showcase of my academic and personal projects, demonstrating my skills in both software and hardware engineering.</p>
+            <div class="project-grid">
+                <div class="project-item">
+                    <h3>OOP & Data Structures Order Processor</h3>
+                    <p class="project-description">A console-based application demonstrating core Object-Oriented Programming (OOP) principles and efficient Data Structures & Algorithms for managing customer orders.</p>
+                    <ul class="project-tech">
+                        <li><strong>Languages:</strong> C++</li>
+                        <li><strong>Concepts:</strong> Object-Oriented Programming, Data Structures (e.g., Linked Lists, Hash Tables), Algorithms</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/sweetNspicyy/Order-Processing-Application-using-Data-Structures-and-OOP" target="_blank" class="project-button">View Code <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-item">
+                    <h3>Custom Bench Power Supply Unit</h3>
+                    <p class="project-description">Designed and fabricated a fully functional custom DC power supply from scratch, involving circuit design, PCB layout, component sourcing, and precision soldering.</p>
+                    <ul class="project-tech">
+                        <li><strong>Skills:</strong> Circuit Design, PCB Fabrication, Soldering</li>
+                        <li><strong>Tools:</strong> Proteus (Simulation), AutoCAD (Design)</li>
+                        <li><strong>Concepts:</strong> Power Electronics, Voltage Regulation</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/sweetNspicyy/Custom-Power-Supply" target="_blank" class="project-button">View Docs <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>Standalone PIR Motion Sensor Module</h3>
+                    <p class="project-description">Developed a passive infrared (PIR) motion sensor module from raw components, encompassing circuit design, custom PCB creation, and precise soldering. This project honed skills in low-power electronics and sensor integration.</p>
+                    <ul class="project-tech">
+                        <li><strong>Skills:</strong> Analog/Digital Circuit Design, PCB Fabrication, Sensor Interfacing</li>
+                        <li><strong>Tools:</strong> Proteus, Multisim</li>
+                        <li><strong>Concepts:</strong> Sensor Integration, Signal Conditioning</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/sweetNspicyy/PIR-Motion-Sensor" target="_blank" class="project-button">View Docs <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <h3>Smart Intrusion Detection System</h3>
+                    <p class="project-description">Engineered an embedded intrusion detection system that triggers an internal buzzer alarm and sends an SMS notification to the owner's mobile phone after three consecutive failed password attempts. This project integrated hardware interfacing with software logic for real-time security.</p>
+                    <ul class="project-tech">
+                        <li><strong>Languages:</strong> C/C++ (for Microcontroller)</li>
+                        <li><strong>Hardware:</strong> Microcontroller (e.g., Arduino/ESP32), GSM Module, Buzzer, Keypad</li>
+                        <li><strong>Concepts:</strong> Embedded Systems, Real-time Alerts, Security Logic</li>
+                    </ul>
+                    <div class="project-links">
+                        <a href="https://github.com/sweetNspicyy/Intrusion-Detection-System" target="_blank" class="project-button">View Code <i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="fade-in glow-on-hover glow-on-click">
+            <h2>Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Core Computer Engineering</h3>
+                    <ul>
+                        <li>Circuit Design</li>
+                        <li>PCB Fabrication</li>
+                        <li>Embedded Systems</li>
+                        <li>Sensor Interfacing</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Software Development</h3>
+                    <ul>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>C++, Python</li>
+                        <li>Object-Oriented Programming (OOP)</li>
+                        <li>Data Structures & Algorithms</li>
+                        <li>MySQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Tools & Platforms</h3>
+                    <ul>
+                        <li>Git & GitHub</li>
+                        <li>VS Code</li>
+                        <li>Proteus (Simulation)</li>
+                        <li>AutoCAD (Design)</li>
+                        <li>Matlab (Data Analysis)</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Teamwork & Collaboration</li>
+                        <li>Problem Solving</li>
+                        <li>Attention to Detail</li>
+                        <li>Adaptability</li>
+                        <li>Time Management & Efficiency</li>
+                        <li>Written Communication</li>
+                        <li>Interpersonal Communication</li>
+                        <li>Intrapersonal Communication</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+<section id="education" class="fade-in glow-on-hover glow-on-click" itemscope itemtype="http://schema.org/EducationalOrganization">
+    <h2>Education</h2>
+
+    <div class="education-item" itemprop="alumniOf" itemscope itemtype="http://schema.org/EducationalOccupationalCredential">
+        <h3 itemprop="credentialCategory">Bachelor of Science in Computer Engineering</h3>
+        <p itemprop="educationalLevel">
+            <span itemprop="name">Asian College of Technology - International Educational Foundation (ACT-IEF)</span><br>
+            <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span itemprop="streetAddress">Corner Leon Kilat & P. Del Rosario Streets</span><br>
+                <span itemprop="addressLocality">Cebu City</span>, <span itemprop="postalCode">6000</span>, <span itemprop="addressCountry">Philippines</span>
+            </span>
+        </p>
+        <p>
+            <time itemprop="startDate" datetime="2021">2021</time> – Expected Graduation: <time itemprop="endDate" datetime="2026-05">May, 2026</time>
+        </p>
+    </div>
+
+    <div class="education-details">
+        <h4>Key Coursework & Skills Acquired:</h4>
         <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>MySQL</li>
-            <li>Python</li>
-            <li>C++</li>
-            <li>Assembly Language</li>
-            <li>Embedded Systems</li>
-            <li>Cisco Networking Fundamentals</li>
-            <li>... (learning soon)</li>
+            <li>
+                <strong>Core Computer Engineering:</strong>
+                <ul>
+                    <li>Data Structures & Algorithms</li>
+                    <li>Digital Logic Design</li>
+                    <li>Microcontroller Applications</li>
+                    </ul>
+            </li>
+            <li>
+                <strong>Software Development:</strong>
+                <ul>
+                    <li>Object-Oriented Programming (OOP)</li>
+                    <li>Web Development Fundamentals (HTML, CSS, JavaScript)</li>
+                    </ul>
+            </li>
+            <li>
+                <strong>Tools & Platforms:</strong>
+                <ul>
+                    <li>Version Control (e.g., Git)</li>
+                    <li>Integrated Development Environments (IDEs)</li>
+                    <li>Operating Systems (e.g., Windows)</li>
+                    <li>Debugging & Testing Tools</li>
+                    </ul>
+            </li>
         </ul>
-    </section>
+    </div>
+</section>
 
-    <section class="glow-on-hover glow-on-click">
-        <h2>Work Experience</h2>
-        <div class="experience">
-            <p><strong>McDonald’s, Pajo Lapu-Lapu City, Cebu Philippines</strong><br>Kitchen Crew (Sept 2024 – June 2025)</p>
-        </div>
-    </section>
+        <section id="experience" class="fade-in glow-on-hover glow-on-click">
+            <h2>Work Experience</h2>
+            <div class="experience">
+                <p>
+                    <strong>Kitchen Crew</strong><br>
+                    McDonald’s, Pajo Lapu-Lapu City, Cebu Philippines<br>
+                    Sept 2024 – June 2025
+                </p>
+                <ul>
+                    <li>Developed strong <strong>organizational skills</strong> and <strong>attention to detail</strong> in a dynamic, fast-paced environment.</li>
+                    <li>Honed <strong>teamwork & collaboration</strong> by working effectively with diverse colleagues to ensure efficient operations.</li>
+                    <li>Demonstrated <strong>adaptability</strong> and <strong>time management</strong> by quickly learning new processes and managing multiple tasks under pressure.</li>
+                </ul>
+            </div>
+        </section>
 
-    <section class="glow-on-hover glow-on-click">
-        <h2>Certificate</h2>
-        <div class="certificate">
-            <p><strong>ResultsCx, Mactan Newtown / Hoopsdome Lapu-Lapu City, Cebu Philippines</strong><br>Call Center Training (June 2024)</p>
-        </div>
-    </section>
+        <section id="certificates" class="fade-in glow-on-hover glow-on-click">
+            <h2>Certificates & Training</h2>
+            <div class="certificate">
+                <p>
+                    <strong>Call Center Training Certificate</strong><br>
+                    ResultsCx, Mactan Newtown / Hoopsdome Lapu-Lapu City, Cebu Philippines<br>
+                    June 2024
+                </p>
+                <ul>
+                    <li>Enhanced <strong>interpersonal communication</strong> and <strong>problem-solving</strong> abilities through intensive customer service scenarios.</li>
+                    <li>Developed strong <strong>active listening</strong> and <strong>conflict resolution</strong> skills, crucial for effective team environments.</li>
+                </ul>
+                <p class="note">While my focus is on Computer Engineering, this training honed valuable soft skills applicable to any professional setting.</p>
+            </div>
+        </section>
 
-    <section class="glow-on-hover glow-on-click">
-        <h2>Contact</h2>
-        <div class="contact-info">
-            <p>Email: <a href="mailto:kentvincentboter444@gmail.com">kentvincentboter444@gmail.com</a></p>
-            <p>Phone: 0912 123 1234</p>
-            <p>GitHub: <a href="https://github.com/sweetNspicyy" target="_blank">sweetNspicyy</a></p>
-            <p>Facebook: <a href="https://web.facebook.com/vincent.park.7921/" target="_blank">Kent Vincent I. Boter</a></p>
+        <section id="languages" class="fade-in glow-on-hover glow-on-click">
+            <h2>Languages</h2>
+            <p>I'm proficient in several languages, enabling effective communication in diverse settings.</p>
+            <ul>
+                <li><strong>English:</strong> Fluent (Professional Working Proficiency)</li>
+                <li><strong>Tagalog:</strong> Native (Full Professional Proficiency)</li>
+                <li><strong>Bisaya:</strong> Native (Full Professional Proficiency)</li>
+            </ul>
+        </section>
+
+        <section id="testimonials" class="fade-in glow-on-hover glow-on-click">
+            <h2>What Others Say</h2>
+            <div class="testimonial-item">
+                <blockquote>
+                    "Kent is an incredibly reliable and supportive team member. He consistently goes the extra mile to ensure no one is left behind, always offering help and guidance. His positive attitude and collaborative spirit make him an invaluable asset to any project."
+                </blockquote>
+                <p class="testimonial-author">— <cite>Rob Nigel Cabanero</cite>, Computer Engineering Peer</p>
+            </div>
+        </section>
+
+        <section id="articles" class="fade-in glow-on-hover glow-on-click"> 
+            <h2>My Articles</h2>
+            <p>Exploring topics in software and hardware, and sharing my insights and learning journey.</p>
+            <div class="blog-post-grid">
+                <div class="blog-post-item">
+                    <h3>The Importance of Data Structures in Everyday Coding</h3>
+                    <p class="blog-description">An exploration into how efficient data structures are fundamental to writing optimized and scalable code, illustrated with practical examples.</p>
+                    <a href="#" target="_blank" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="blog-post-item">
+                    <h3>My Journey into Hardware: From Theory to Solder</h3>
+                    <p class="blog-description">Recounting the exciting process of translating theoretical circuit designs into tangible hardware, and the valuable lessons learned along the way.</p>
+                    <a href="#" target="_blank" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in glow-on-hover glow-on-click">
+            <h2>Contact Me</h2>
+            <p>I'm always open to connecting with fellow engineers, collaborators, or anyone interested in my work. Feel free to reach out!</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:kentvincentboter444@gmail.com">kentvincentboter444@gmail.com</a></p>
+                <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/kentvincentboter" target="_blank">kentvincentboterlinkedin</a></p>
+                <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/sweetNspicyy" target="_blank">sweetNspicyy</a></p>
+                <p><i class="fas fa-file-alt"></i> Resume: <a href="your_resume_link.pdf" target="_blank">kentvincentboteresume</a></p>
+                <p><i class="fas fa-phone"></i> Phone: 0938 699 5901</p>
+                <p><i class="fab fa-facebook"></i> Facebook: <a href="https://web.facebook.com/vincent.park.7921/" target="_blank">Kent Vincent I. Boter</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="main-footer" class="tech-design">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="mailto:kentvincentboter444@gmail.com" target="_blank" aria-label="Gmail">
+                    <i class="fab fa-google"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/kent-vincent-boter-/" target="_blank" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/sweetNspicyy" target="_blank" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="tel:+639386995901" aria-label="Call Me">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://web.facebook.com/vincent.park.7921/" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            <p>&copy; <span id="current-year"></span> Kent Vincent Boter. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
     <script src="script.js"></script>
 </body>
