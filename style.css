@@ -1,13 +1,96 @@
 /* ==========================================================================
-   Project: Kent Vincent Boter's Portfolio
-   Author: Kent Vincent Boter
-   Description: Main stylesheet for the portfolio website,
-                including base styles, layout, components, and responsive design.
-   ========================================================================== */
+ * Project: Kent Vincent Boter's Portfolio
+ * Author: Kent Vincent Boter
+ * Description: Main stylesheet for the portfolio website,
+ * including base styles, layout, components, and responsive design.
+ * ========================================================================== */
+
+/* Define CSS variables for better maintainability and consistency */
+:root {
+    /* Colors */
+    --clr-primary-dark: #0f2027; /* Darkest blue/header start */
+    --clr-primary-medium: #203a43; /* Medium blue/header middle */
+    --clr-primary-light: #2c5364; /* Lightest blue/main accent */
+    --clr-secondary-accent: #4a90e2; /* Button/link blue */
+    --clr-text-dark: #333;
+    --clr-text-light: #fff;
+    --clr-bg-light: #f2f5f9; /* Light mode body background */
+    --clr-bg-section-light: #fff; /* Light mode section background */
+    --clr-bg-item-light: #f9f9f9; /* Light mode item background */
+    --clr-border-light: #eee;
+    --clr-shadow-light: rgba(0, 0, 0, 0.1);
+    --clr-shadow-item-light: rgba(0, 0, 0, 0.05);
+
+    /* Specific Link Colors for Contact Section */
+    --link-color: var(--clr-primary-light); /* Default link color in light mode */
+    --link-hover-color: var(--clr-secondary-accent); /* Hover color for links in light mode */
+
+    /* Dark Mode Colors */
+    --clr-dark-bg: #121212;
+    --clr-dark-text: #e0e0e0;
+    --clr-dark-header: linear-gradient(to right, #000000, #1f1f1f, #333333);
+    --clr-dark-nav-bg: #222;
+    --clr-dark-nav-button: #3a3a3a;
+    --clr-dark-section-bg: #1e1e1e;
+    --clr-dark-item-bg: #2a2a2a;
+    --clr-dark-link: #9ecfff;
+    --clr-dark-button: #6a9acb;
+    --clr-dark-border: #555;
+    --clr-dark-shadow: rgba(255, 255, 255, 0.05);
+    --clr-dark-item-shadow: rgba(255, 255, 255, 0.03);
+
+    /* Chatbot Colors */
+    --chatbot-bg-light: #ffffff;
+    --chatbot-header-bg-light: linear-gradient(to right, var(--clr-primary-dark), var(--clr-primary-medium));
+    --chatbot-bot-message-bg-light: #e0e0e0;
+    --chatbot-user-message-bg-light: var(--clr-secondary-accent);
+    --chatbot-user-message-text-light: var(--clr-text-light);
+    --chatbot-input-bg-light: #f9f9f9;
+    --chatbot-input-border-light: #ddd;
+    --chatbot-quick-reply-bg-light: #f0f0f0;
+    --chatbot-quick-reply-text-light: #555;
+
+    --chatbot-bg-dark: #2a2a2a;
+    --chatbot-header-bg-dark: linear-gradient(to right, #000000, #1a1a1a);
+    --chatbot-bot-message-bg-dark: #3a3a3a;
+    --chatbot-user-message-bg-dark: var(--clr-dark-button);
+    --chatbot-user-message-text-dark: var(--clr-text-dark); /* Should be dark, maybe #333 for contrast */
+    --chatbot-input-bg-dark: #333333;
+    --chatbot-input-border-dark: #555555;
+    --chatbot-quick-reply-bg-dark: #3a3a3a;
+    --chatbot-quick-reply-text-dark: #e0e0e0;
+
+
+    /* Spacing */
+    --spacing-xs: 5px;
+    --spacing-sm: 8px;
+    --spacing-md: 10px;
+    --spacing-lg: 15px;
+    --spacing-xl: 20px;
+    --spacing-2xl: 25px;
+    --spacing-3xl: 30px;
+    --spacing-4xl: 60px;
+
+    /* Project Grid Specifics */
+    --project-grid-gap: var(--spacing-3xl); /* Standard gap between project items */
+    --project-min-item-width: 400px; /* Optimized min-width for project items */
+
+    /* Border Radius */
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 15px;
+
+    /* Footer Specific Variables (derived from existing ones) */
+    --background-dark-alt: var(--clr-primary-dark); /* Using your primary dark for consistency */
+    --text-color-light: var(--clr-text-light);
+    --accent-color: var(--clr-secondary-accent);
+    --accent-rgb: 74, 144, 226; /* RGB values for --clr-secondary-accent */
+    --border-color: var(--clr-border-light);
+}
 
 /* ==========================================================================
-   1. Global Reset and Base Styles
-   ========================================================================== */
+ * 1. Global Reset and Base Styles
+ * ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -16,14 +99,14 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #f2f5f9;
-    color: #333;
+    background: var(--clr-bg-light);
+    color: var(--clr-text-dark);
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
 }
 
 a {
-    color: #2c5364;
+    color: var(--clr-primary-light); /* Default link color across the site */
     text-decoration: none;
     transition: color 0.3s;
 }
@@ -32,69 +115,148 @@ a:hover {
     text-decoration: underline;
 }
 
-/* ==========================================================================
-   2. Layout and Component Styles
-   ========================================================================== */
+/* Base styles for list items with bullet points */
+ul {
+    padding-left: var(--spacing-xl);
+    list-style-type: disc;
+}
 
-/* Header Section */
+/* Base styles for list items without bullet points */
+.no-bullet-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* ==========================================================================
+ * 2. Layout and Component Styles
+ * ========================================================================== */
+
+/* --- Header Section --- */
 header {
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    color: white;
-    padding: 60px 20px;
+    background: linear-gradient(to right, var(--clr-primary-dark), var(--clr-primary-medium), var(--clr-primary-light));
+    color: var(--clr-text-light);
+    padding: var(--spacing-4xl) var(--spacing-xl);
     text-align: center;
 }
 
 header h1 {
     font-size: 2.5rem;
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
 }
 
 header p {
     font-size: 1.2rem;
-    margin-top: 10px;
+    margin-top: var(--spacing-md);
 }
 
 /* Professional Date and Time Styling */
 header #dateTime {
-    font-size: 0.95rem; /* Slightly smaller font size */
-    color: rgba(255, 255, 255, 0.8); /* Muted white for better contrast but not harsh */
-    margin-top: 15px; /* Add some space above it */
-    font-weight: 300; /* Use a lighter font weight from Poppins for subtlety */
-    letter-spacing: 0.5px; /* Slight letter spacing for readability */
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: var(--spacing-lg);
+    font-weight: 300;
+    letter-spacing: 0.5px;
 }
 
-/* All Sections Base Style */
+/* --- Main Navigation Bar --- */
+.main-nav {
+    background-color: #3e606f; /* Using a direct color here as it's a specific nav shade */
+    padding: var(--spacing-md) 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.nav-button {
+    background-color: #4a7486; /* Specific button color for nav */
+    color: var(--clr-text-light);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-button:hover {
+    background-color: #5d8ea1; /* Darker shade on hover */
+    transform: translateY(-2px);
+    text-decoration: none; /* Ensure no underline */
+}
+
+/* --- All Sections Base Style --- */
 section {
     max-width: 1000px;
-    margin: 30px auto;
-    padding: 30px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Base transition for dark mode, but also include for max-height/opacity */
-    transition: background 0.3s ease, color 0.3s ease, max-height 0.7s ease-out, opacity 0.7s ease-out, padding 0.7s ease-out;
+    margin: var(--spacing-3xl) auto;
+    padding: var(--spacing-3xl);
+    background: var(--clr-bg-section-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 8px var(--clr-shadow-light);
+    transition: background 0.3s ease, color 0.3s ease, max-height 0.7s ease-out, opacity 0.7s ease-out, padding 0.7s ease-out, margin 0.7s ease-out;
 }
 
 section h2 {
     font-size: 1.8rem;
-    color: #2c5364;
-    margin-bottom: 15px;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-lg);
 }
 
-ul {
-    padding-left: 20px;
-    list-style-type: disc;
-}
-
-/* Specific Section Adjustments (Work Experience, Certificate, Contact) */
+/* Specific Section Adjustments for paragraph spacing */
 .contact-info p,
 .experience p,
 .certificate p {
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
 }
 
-/* About Me Section - Toggle Visibility */
-#about.about-hidden {
+.contact-info p i {
+    margin-right: var(--spacing-sm);
+    color: var(--clr-primary-light);
+}
+
+/* New: Contact Details Styling */
+.contact-details p {
+    margin-bottom: var(--spacing-sm); /* Add some space between contact lines */
+    display: flex;
+    align-items: center;
+}
+
+.contact-details h3 { /* Style for the "Get in Touch Directly" heading */
+    font-size: 1.3rem;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-lg);
+    margin-top: var(--spacing-md); /* Add some top margin to separate it from h2 */
+}
+
+.contact-details p i {
+    margin-right: var(--spacing-xs); /* Space between icon and text */
+    color: var(--clr-secondary-accent); /* Use accent color for icons */
+    width: 20px; /* Ensure consistent icon width */
+    text-align: center;
+    font-size: 1.1em; /* Slightly larger icon */
+}
+
+.contact-details a {
+    color: var(--link-color); /* Uses the new link color variable */
+    text-decoration: none; /* Remove default underline */
+    transition: color 0.3s ease;
+}
+
+.contact-details a:hover {
+    color: var(--link-hover-color); /* Uses the new link hover color variable */
+    text-decoration: underline; /* Add underline on hover for feedback */
+}
+
+
+/* About Me & Contact Form Sections - Toggle Visibility */
+#about.about-hidden,
+#contact-form.about-hidden {
     max-height: 0;
     opacity: 0;
     overflow: hidden;
@@ -104,114 +266,385 @@ ul {
     margin-bottom: 0;
 }
 
-#about:not(.about-hidden) { /* Visible state */
+#about:not(.about-hidden),
+#contact-form:not(.about-hidden) { /* Visible state */
     max-height: 1000px; /* Arbitrary large value to allow content to show */
     opacity: 1;
-    padding: 30px;
-    margin: 30px auto;
+    padding: var(--spacing-3xl);
+    margin: var(--spacing-3xl) auto;
 }
 
-/* --- General Action Button Styling (for about-toggle and buy-coffee-toggle-button) --- */
+/* --- General Action Button Styling --- */
 .action-button {
-    display: block; /* Makes it a block element to allow margin:auto for centering */
-    margin: 20px auto; /* Centers the button horizontally and adds space */
-    padding: 10px 20px;
+    display: block;
+    margin: var(--spacing-xl) auto;
+    padding: var(--spacing-md) var(--spacing-xl);
     font-size: 1rem;
     cursor: pointer;
-    background-color: #2c5364;
-    color: white;
+    background-color: var(--clr-primary-light);
+    color: var(--clr-text-light);
     border: none;
-    border-radius: 5px;
-    text-align: center; /* Ensures text is centered for <a> tag */
-    text-decoration: none; /* Removes underline for <a> tag */
+    border-radius: var(--border-radius-sm);
+    text-align: center;
+    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
-    background-color: #1a3b4a;
+    background-color: #1a3b4a; /* Darker shade on hover */
 }
 
 /* Coffee Icon within the "Buy me a Coffee" button */
 #buy-coffee-toggle-button .coffee-icon {
-    margin-right: 8px; /* Space between icon and text */
-    font-size: 1.2em; /* Slightly larger icon */
-    vertical-align: middle; /* Align icon nicely with text */
-    display: inline-block; /* Allows margin-right to work */
-    transform: translateY(-1px); /* Slight vertical adjustment */
+    margin-right: var(--spacing-sm);
+    font-size: 1.2em;
+    vertical-align: middle;
+    display: inline-block;
+    transform: translateY(-1px);
+}
+
+/* --- Projects Section --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--project-min-item-width), 1fr));
+    gap: var(--project-grid-gap);
+    margin-top: var(--spacing-xl);
+    justify-items: center; /* Centers project items within their grid cells */
+    align-items: stretch; /* Ensures all items in a row have the same height */
+}
+
+.project-item {
+    background: var(--clr-bg-item-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 5px var(--clr-shadow-item-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Flexbox for consistent content alignment */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes project links to the bottom */
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.project-item h3 {
+    font-size: 1.4rem;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.project-description {
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-md);
+    flex-grow: 1; /* Allows description to take up available space */
+}
+
+.project-tech {
+    /* @extend .no-bullet-list; -- Note: @extend is a Sass/Less feature, not standard CSS. */
+    list-style: none; /* Apply no-bullet-list properties directly */
+    padding: 0;
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: var(--spacing-lg);
+}
+
+.project-tech li {
+    margin-bottom: var(--spacing-sm);
+}
+
+.project-links {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-top: auto; /* Pushes the links to the bottom */
+}
+
+.project-button {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--clr-secondary-accent);
+    color: var(--clr-text-light);
+    border-radius: var(--border-radius-sm);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.project-button:hover {
+    background-color: #357bd8; /* Darker blue on hover */
+    text-decoration: none;
+}
+
+.project-button i {
+    margin-left: var(--spacing-sm);
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+.skill-category {
+    background: var(--clr-bg-item-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 5px var(--clr-shadow-item-light);
+}
+
+.skill-category h3 {
+    font-size: 1.2rem;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 1px solid var(--clr-border-light);
+    padding-bottom: var(--spacing-sm);
+}
+
+.skill-category ul {
+    /* @extend .no-bullet-list; */
+    list-style: none; /* Apply no-bullet-list properties directly */
+    padding: 0;
+}
+
+.skill-category li {
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* --- Certificates Section --- */
+.certificate .note {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px dashed #ddd;
+}
+
+/* --- Languages Section --- */
+#languages ul {
+    /* @extend .no-bullet-list; */
+    list-style: none; /* Apply no-bullet-list properties directly */
+    padding: 0;
+}
+
+#languages li {
+    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
+}
+
+#languages li strong {
+    color: var(--clr-primary-light);
+}
+
+/* --- Testimonials Section --- */
+.testimonial-item {
+    background: var(--clr-bg-item-light);
+    padding: var(--spacing-2xl);
+    border-left: 5px solid var(--clr-primary-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 5px var(--clr-shadow-item-light);
+    margin-bottom: var(--spacing-xl);
+}
+
+.testimonial-item blockquote {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #444;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+}
+
+.testimonial-item .testimonial-author {
+    text-align: right;
+    font-weight: 500;
+    color: var(--clr-primary-light);
+}
+
+/* --- Blog/Articles Section --- */
+.blog-post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-3xl);
+    margin-top: var(--spacing-xl);
+}
+
+.blog-post-item {
+    background: var(--clr-bg-item-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 5px var(--clr-shadow-item-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-post-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post-item h3 {
+    font-size: 1.3rem;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-md);
+}
+
+.blog-description {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: var(--spacing-lg);
+}
+
+.blog-read-more {
+    display: inline-block;
+    color: var(--clr-secondary-accent);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.blog-read-more i {
+    margin-left: var(--spacing-sm);
+}
+
+/* --- Contact Form Section --- */
+#inquiryForm .form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+#inquiryForm label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 500;
+    color: var(--clr-text-dark);
+}
+
+#inquiryForm input[type="text"],
+#inquiryForm input[type="email"],
+#inquiryForm textarea {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius-sm);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+#inquiryForm input[type="text"]:focus,
+#inquiryForm input[type="email"]:focus,
+#inquiryForm textarea:focus {
+    border-color: var(--clr-primary-light);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(44, 83, 100, 0.2);
+}
+
+#inquiryForm textarea {
+    resize: vertical; /* Allow vertical resizing */
+}
+
+#inquiryForm button[type="submit"] {
+    width: auto; /* Allow button to fit content */
+    margin-left: 0; /* Override `margin: auto` from .action-button */
+    margin-right: 0; /* Override `margin: auto` from .action-button */
+}
+
+.form-status-message {
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-sm);
+    font-weight: 500;
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease;
+}
+
+.form-status-message.success {
+    background-color: #d4edda; /* Light green */
+    color: #155724; /* Dark green text */
+    border: 1px solid #c3e6cb; /* Green border */
+    opacity: 1;
+}
+
+.form-status-message.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Red border */
+    opacity: 1;
+}
+
+.form-note {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-lg);
+    border-top: 1px dashed var(--clr-border-light);
 }
 
 /* ==========================================================================
-   3. Payment Options Section (for donations.html)
-   ========================================================================== */
+ * 3. Payment Options Section (for donations.html)
+ * ========================================================================== */
 #payment-options-container {
-    max-width: 800px; /* Accommodates 3 columns nicely */
-    margin: 30px auto; /* Center it, good for a standalone page */
-    padding: 25px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center overall content inside */
+    max-width: 800px;
+    margin: var(--spacing-3xl) auto;
+    padding: var(--spacing-2xl);
+    background: var(--clr-bg-section-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 4px 8px var(--clr-shadow-light);
+    text-align: center;
 }
 
 #payment-options-container h3 {
     font-size: 1.5rem;
-    color: #2c5364;
-    margin-bottom: 15px;
+    color: var(--clr-primary-light);
+    margin-bottom: var(--spacing-lg);
 }
 
 #payment-options-container p {
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-md);
     line-height: 1.5;
 }
 
-/* QR Note Section */
 .qr-note {
     font-size: 0.9rem;
     color: #666;
-    margin-bottom: 25px;
-    background-color: #f0f8ff;
-    border-left: 5px solid #2c5364;
-    padding: 10px 15px;
-    border-radius: 5px;
-    
-    /* Flexbox for the note parts: Aligns all parts to the left and allows wrapping */
+    margin-bottom: var(--spacing-2xl);
+    background-color: #f0f8ff; /* Light blue background */
+    border-left: 5px solid var(--clr-primary-light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-sm);
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start; /* Aligns content to the start (left) */
-    align-items: flex-start; /* Aligns items to the top within the flex line */
-    line-height: 1.4; /* Slightly tighter line height for the note */
+    justify-content: flex-start;
+    align-items: flex-start;
+    line-height: 1.4;
 }
 
 .note-part {
-    margin: 0; /* Remove default paragraph margins */
-    padding: 0; /* Remove default paragraph padding */
-    flex: 1 1 auto; /* Allows parts to grow/shrink based on content */
-    min-width: 25%; /* A base width, allows parts to sit next to each other, wraps if content is too long */
-    box-sizing: border-box; /* Include padding/border in width calculation */
-    text-align: left; /* Ensures text within each part is left-aligned */
+    margin: 0;
+    padding: 0;
+    flex: 1 1 auto;
+    min-width: 25%;
+    box-sizing: border-box;
+    text-align: left;
 }
 
-.note-part.note-name {
-    /* No specific alignment needed here, it inherits from .note-part */
-}
-
-/* Grid layout for payment links (horizontal arrangement of QR codes) */
 .payment-links-grid {
     display: grid;
-    /* ADJUSTED LINE BELOW: Reduced minmax to allow columns to shrink more */
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Attempt to keep 3 columns, even on smaller screens */
-    gap: 20px; /* Space between grid items */
-    margin-top: 20px;
-    justify-content: center; /* Centers items if they don't fill the row */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    justify-content: center;
 }
 
 .payment-option-item {
-    padding: 15px;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    background-color: #f9f9f9;
+    padding: var(--spacing-lg);
+    border: 1px solid var(--clr-border-light);
+    border-radius: var(--border-radius-md);
+    background-color: var(--clr-bg-item-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center; /* Ensures content within each item is centered */
+    text-align: center;
 }
 
 .payment-option-item:hover {
@@ -220,41 +653,115 @@ ul {
 }
 
 .qr-code-img {
-    max-width: 150px; /* Adjust size of QR code images */
+    max-width: 150px;
     height: auto;
-    border: 1px solid #eee; /* Subtle border for QR codes */
-    border-radius: 8px;
-    margin-top: 10px;
-    margin-bottom: 15px; /* Space between QR and number/link */
-    display: block; /* Make it block to center with margin auto */
+    border: 1px solid var(--clr-border-light);
+    border-radius: var(--border-radius-sm);
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
 .payment-detail {
-    font-size: 0.95rem; /* Smaller font for details */
-    word-break: break-all; /* Break long links/numbers if needed */
+    font-size: 0.95rem;
+    word-break: break-all;
 }
 
 /* ==========================================================================
-   4. Dark Mode Styles
-   ========================================================================== */
+ * 4. Floating Connect With Me Button Styles
+ * ========================================================================== */
+#floating-contact-btn {
+    position: fixed;
+    bottom: var(--spacing-xl);
+    right: var(--spacing-xl);
+    z-index: 1000;
+    cursor: pointer;
+    text-align: center;
+    transition: box-shadow 0.3s ease; /* Matches glow-on-hover */
+}
+
+.floating-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; /* Default circular width */
+    height: 60px; /* Default circular height */
+    border-radius: 50%; /* Makes it circular */
+    background-color: #007bff; /* Prominent blue */
+    color: var(--clr-text-light);
+    font-size: 1.8rem; /* Icon size */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    transition: all 0.3s ease, width 0.3s ease, border-radius 0.3s ease; /* Added border-radius to transition */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.floating-button:hover {
+    width: 150px; /* Expand width on hover to show text */
+    border-radius: 30px; /* Make it pill-shaped on hover */
+    background-color: #0056b3; /* Darker blue on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+}
+
+.floating-button .fas {
+    margin-right: 0;
+    transition: margin-right 0.3s ease;
+}
+
+.floating-button:hover .fas {
+    margin-right: var(--spacing-sm);
+}
+
+.floating-button .button-text {
+    font-size: 1rem;
+    opacity: 0;
+    max-width: 0;
+    transition: opacity 0.3s ease, max-width 0.3s ease;
+}
+
+.floating-button:hover .button-text {
+    opacity: 1;
+    max-width: 100px; /* Allows text to expand */
+    overflow: visible;
+}
+
+/* ==========================================================================
+ * 5. Dark Mode Styles
+ * ========================================================================== */
 .dark-mode {
-    background: #121212;
-    color: #e0e0e0;
+    background: var(--clr-dark-bg);
+    color: var(--clr-dark-text);
 }
 
 .dark-mode header {
-    background: linear-gradient(to right, #000000, #1f1f1f, #333333);
+    background: var(--clr-dark-header);
+}
+
+.dark-mode .main-nav {
+    background-color: var(--clr-dark-nav-bg);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .nav-button {
+    background-color: var(--clr-dark-nav-button);
+    color: var(--clr-dark-text);
+}
+
+.dark-mode .nav-button:hover {
+    background-color: #4a4a4a;
 }
 
 .dark-mode section {
-    background: #1e1e1e;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+    background: var(--clr-dark-section-bg);
+    box-shadow: 0 4px 12px var(--clr-dark-shadow);
 }
 
 .dark-mode a {
-    color: #9ecfff;
+    color: var(--clr-dark-link);
 }
 
 /* Dark Mode adjustment for Date and Time */
@@ -262,39 +769,128 @@ ul {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Dark Mode for Payment Options */
-.dark-mode #payment-options-container {
-    background: #1e1e1e;
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+/* Dark Mode for various content sections/items */
+.dark-mode .project-item,
+.dark-mode .skill-category,
+.dark-mode .testimonial-item,
+.dark-mode .blog-post-item,
+.dark-mode #payment-options-container,
+.dark-mode .payment-option-item {
+    background: var(--clr-dark-item-bg);
+    box-shadow: 0 2px 5px var(--clr-dark-item-shadow);
 }
 
-.dark-mode #payment-options-container h3 {
-    color: #9ecfff;
+.dark-mode .project-item:hover,
+.dark-mode .skill-category:hover,
+.dark-mode .testimonial-item:hover,
+.dark-mode .blog-post-item:hover,
+.dark-mode .payment-option-item:hover {
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.08);
 }
 
-/* Dark Mode for QR Note */
-.dark-mode .qr-note {
-    background-color: #2a2a2a;
-    border-left-color: #9ecfff;
+.dark-mode section h2,
+.dark-mode .project-item h3,
+.dark-mode .skill-category h3,
+.dark-mode .testimonial-item .testimonial-author,
+.dark-mode #languages li strong,
+.dark-mode #payment-options-container h3,
+.dark-mode .contact-details h3 { /* Added dark mode for contact-details h3 */
+    color: var(--clr-dark-link);
+}
+
+.dark-mode .project-tech li,
+.dark-mode .skill-category li,
+.dark-mode .project-description,
+.dark-mode .blog-description,
+.dark-mode .testimonial-item blockquote,
+.dark-mode .payment-detail,
+.dark-mode .qr-note { /* Added qr-note here */
     color: #ccc;
 }
 
-.dark-mode .payment-option-item {
-    background-color: #2a2a2a;
-    border-color: #333;
+.dark-mode .project-button,
+.dark-mode #inquiryForm button[type="submit"] {
+    background-color: var(--clr-dark-button);
 }
 
-.dark-mode .payment-option-item:hover {
-    box-shadow: 0 8px 16px rgba(255, 255, 255, 0.08);
+.dark-mode .project-button:hover,
+.dark-mode #inquiryForm button[type="submit"]:hover {
+    background-color: #5587ba;
+}
+
+.dark-mode #inquiryForm label {
+    color: var(--clr-dark-text);
+}
+
+.dark-mode #inquiryForm input[type="text"],
+.dark-mode #inquiryForm input[type="email"],
+.dark-mode #inquiryForm textarea {
+    background-color: #333;
+    border-color: var(--clr-dark-border);
+    color: var(--clr-dark-text);
+}
+
+.dark-mode #inquiryForm input[type="text"]:focus,
+.dark-mode #inquiryForm input[type="email"]:focus,
+.dark-mode #inquiryForm textarea:focus {
+    border-color: var(--clr-dark-link);
+    box-shadow: 0 0 0 2px rgba(158, 207, 255, 0.2);
+}
+
+.dark-mode textarea { /* Ensure textarea also uses dark mode text color */
+    color: var(--clr-dark-text);
+}
+
+.dark-mode .form-status-message.success {
+    background-color: #28a74533;
+    color: #a7d9b3;
+    border: 1px solid #28a74566;
+}
+
+.dark-mode .form-status-message.error {
+    background-color: #dc354533;
+    color: #d6949a;
+    border: 1px solid #dc354566;
+}
+
+.dark-mode .form-note {
+    border-top-color: #444;
+    color: #aaa;
+}
+
+.dark-mode .contact-info p i,
+.dark-mode .contact-details p i { /* Added dark mode for contact-details icons */
+    color: var(--clr-dark-link); /* Icons should match dark link color */
+}
+
+.dark-mode .blog-read-more {
+    color: var(--clr-dark-link);
+}
+
+/* Dark Mode for Floating Contact Button */
+.dark-mode .floating-button {
+    background-color: var(--clr-dark-button);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .floating-button:hover {
+    background-color: #5587ba;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.6);
+}
+
+/* Dark mode for QR note and QR image border */
+.dark-mode .qr-note {
+    background-color: #2a2a2a; /* Darker background for note */
+    border-left-color: var(--clr-dark-link);
 }
 
 .dark-mode .qr-code-img {
-    border-color: #333;
+    border-color: #444;
 }
 
 /* ==========================================================================
-   5. Animations & Effects
-   ========================================================================== */
+ * 6. Animations & Effects
+ * ========================================================================== */
 
 /* Fade-in Scroll Animation for sections */
 .fade-in {
@@ -311,8 +907,9 @@ ul {
 /* Theme Toggle Button specific styling */
 #theme-toggle {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px; /* Example: Move it up to 10 pixels from the top */
+    /* You can try 5px, 8px, 12px, etc., until it looks right. */
+    right: var(--spacing-xl);
     width: 70px;
     height: 40px;
     border-radius: 20px;
@@ -375,39 +972,483 @@ ul {
     filter: drop-shadow(0 0 8px rgba(173, 216, 230, 0.8));
 }
 
-/* Glow on Hover (Applied to .glow-on-hover class) */
+/* Glow on Hover */
 .glow-on-hover {
     transition: box-shadow 0.3s ease;
 }
 
 .glow-on-hover:hover {
     box-shadow: 0 0 12px 4px rgba(0, 123, 255, 0.6);
-    border-radius: 10px;
+    border-radius: var(--border-radius-md); /* Consistent radius */
 }
 
-/* Glow on Click (Applied to .glow-on-click.clicked class) */
+/* Glow on Click */
 .glow-on-click.clicked {
     box-shadow: 0 0 18px 6px rgba(255, 165, 0, 0.8);
-    border-radius: 10px;
+    border-radius: var(--border-radius-md); /* Consistent radius */
     transition: box-shadow 0.2s ease;
 }
 
 /* ==========================================================================
-   6. Responsive Styles (Media Queries)
-   ========================================================================== */
+ * 7. Chatbot Styles
+ * ========================================================================== */
+
+/* Chatbot Toggle Button */
+#chatbot-toggle-button {
+    position: fixed;
+    bottom: var(--spacing-xl); /* Align with floating contact button */
+    right: calc(var(--spacing-xl) + 70px); /* Adjust to be next to floating contact button + its width */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--clr-secondary-accent);
+    color: var(--clr-text-light);
+    font-size: 1.8rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000; /* Ensure it's above other content */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#chatbot-toggle-button:hover {
+    background-color: #357bd8; /* Darker blue on hover */
+    transform: translateY(-2px);
+}
+
+#chatbot-toggle-button .chat-icon {
+    margin-right: 0; /* No margin when only icon */
+}
+
+/* Chatbot Popup Container */
+.chatbot-popup {
+    position: fixed;
+    bottom: 90px; /* Above the toggle button */
+    right: var(--spacing-xl);
+    width: 350px;
+    height: 450px;
+    background-color: var(--chatbot-bg-light);
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001; /* Above toggle button */
+
+    /* Initial hidden state */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.95);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.chatbot-popup[aria-hidden="false"] {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+}
+
+/* Chatbot Header */
+.chatbot-header {
+    background: var(--chatbot-header-bg-light);
+    color: var(--clr-text-light);
+    padding: var(--spacing-md) var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatbot-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.chatbot-header button {
+    background: none;
+    border: none;
+    color: var(--clr-text-light);
+    font-size: 1.8rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: var(--spacing-xs);
+    border-radius: var(--border-radius-sm);
+    transition: background-color 0.2s ease;
+}
+
+.chatbot-header button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Chatbot Body (Messages Area) */
+.chatbot-body {
+    flex-grow: 1;
+    padding: var(--spacing-md) var(--spacing-xl);
+    overflow-y: auto; /* Enable scrolling for messages */
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    background-color: #f7f7f7; /* Slightly off-white background for body */
+}
+
+/* Individual Message Styles */
+.chatbot-body .message {
+    max-width: 85%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    word-wrap: break-word; /* Ensure long words break */
+}
+
+.chatbot-body .message p {
+    margin: 0; /* Remove default paragraph margin */
+}
+
+.chatbot-body .message.bot {
+    background-color: var(--chatbot-bot-message-bg-light);
+    color: var(--clr-text-dark);
+    align-self: flex-start; /* Align bot messages to the left */
+    border-bottom-left-radius: var(--border-radius-sm); /* Sharpen inner corner */
+}
+
+.chatbot-body .message.user {
+    background-color: var(--chatbot-user-message-bg-light);
+    color: var(--chatbot-user-message-text-light);
+    align-self: flex-end; /* Align user messages to the right */
+    border-bottom-right-radius: var(--border-radius-sm); /* Sharpen inner corner */
+}
+
+/* Quick Replies within messages */
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.quick-reply-btn {
+    background-color: var(--chatbot-quick-reply-bg-light);
+    color: var(--chatbot-quick-reply-text-light);
+    border: 1px solid var(--clr-border-light);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+}
+
+.quick-reply-btn:hover {
+    background-color: #dcdcdc;
+    transform: translateY(-1px);
+}
+
+/* Chatbot Footer (Input Area) */
+.chatbot-footer {
+    display: flex;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-top: 1px solid var(--clr-border-light);
+    gap: var(--spacing-md);
+    background-color: var(--chatbot-bg-light);
+}
+
+#chatbot-input {
+    flex-grow: 1;
+    padding: var(--spacing-md);
+    border: 1px solid var(--chatbot-input-border-light);
+    border-radius: var(--border-radius-md);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    background-color: var(--chatbot-input-bg-light);
+    color: var(--clr-text-dark);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#chatbot-input:focus {
+    border-color: var(--clr-secondary-accent);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+#chatbot-send-button {
+    background-color: var(--clr-secondary-accent);
+    color: var(--clr-text-light);
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#chatbot-send-button:hover {
+    background-color: #357bd8;
+    transform: translateY(-1px);
+}
+
+
+/* ==========================================================================
+ * 8. Dark Mode Chatbot Styles
+ * ========================================================================== */
+.dark-mode .chatbot-popup {
+    background-color: var(--chatbot-bg-dark);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.08);
+}
+
+.dark-mode .chatbot-header {
+    background: var(--chatbot-header-bg-dark);
+    border-bottom-color: rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .chatbot-header h3 {
+    color: var(--clr-dark-text);
+}
+
+.dark-mode .chatbot-header button {
+    color: var(--clr-dark-text);
+}
+
+.dark-mode .chatbot-header button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .chatbot-body {
+    background-color: #202020;
+}
+
+.dark-mode .chatbot-body .message.bot {
+    background-color: var(--chatbot-bot-message-bg-dark);
+    color: var(--clr-dark-text);
+}
+
+.dark-mode .chatbot-body .message.user {
+    background-color: var(--chatbot-user-message-bg-dark);
+    color: var(--chatbot-user-message-text-dark);
+}
+
+.dark-mode .quick-reply-btn {
+    background-color: var(--chatbot-quick-reply-bg-dark);
+    color: var(--chatbot-quick-reply-text-dark);
+    border-color: var(--clr-dark-border);
+}
+
+.dark-mode .quick-reply-btn:hover {
+    background-color: #4a4a4a;
+}
+
+.dark-mode .chatbot-footer {
+    background-color: var(--chatbot-bg-dark);
+    border-top-color: var(--clr-dark-border);
+}
+
+.dark-mode #chatbot-input {
+    background-color: var(--chatbot-input-bg-dark);
+    border-color: var(--chatbot-input-border-dark);
+    color: var(--clr-dark-text);
+}
+
+.dark-mode #chatbot-input:focus {
+    border-color: var(--clr-dark-link);
+    box-shadow: 0 0 0 2px rgba(158, 207, 255, 0.2);
+}
+
+.dark-mode #chatbot-send-button {
+    background-color: var(--clr-dark-button);
+    color: var(--clr-dark-text); /* Use dark mode text color for button */
+}
+
+.dark-mode #chatbot-send-button:hover {
+    background-color: #5587ba;
+}
+
+/* Dark mode for chatbot toggle button */
+.dark-mode #chatbot-toggle-button {
+    background-color: var(--clr-dark-button);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode #chatbot-toggle-button:hover {
+    background-color: #5587ba;
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+ * 9. Footer Basic Styling
+ * ========================================================================== */
+#main-footer {
+    background-color: var(--background-dark-alt); /* Use your existing dark background variable */
+    color: var(--text-color-light); /* Light text for contrast */
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color); /* A subtle top border */
+    /* Position at the very bottom */
+    width: 100%;
+    /* Ensure it's not overlapping other content if layout causes issues.
+        If your body or main content has min-height, make sure it pushes the footer down. */
+    box-sizing: border-box; /* Include padding/border in width */
+}
+
+.footer-content {
+    max-width: 1200px; /* Match your main content width */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Space between social links and copyright */
+}
+
+/* Social Links Container */
+.social-links {
+    display: flex;
+    gap: 25px; /* Space between icons */
+}
+
+/* Individual Social Icon Links */
+.social-links a {
+    color: var(--text-color-light); /* Default icon color */
+    font-size: 2.2em; /* Make icons a good size */
+    transition: color 0.3s ease, transform 0.3s ease;
+    text-decoration: none; /* Remove underline */
+}
+
+.social-links a:hover {
+    color: var(--accent-color); /* Use an accent color on hover */
+    transform: translateY(-5px) scale(1.1); /* Lift and slightly enlarge on hover */
+}
+
+/* Specific icon colors (optional, for branding) */
+.social-links a .fa-google:hover { color: #DB4437; /* Google Red */ }
+.social-links a .fa-linkedin:hover { color: #0077B5; /* LinkedIn Blue */ }
+.social-links a .fa-github:hover { color: #6e5494; /* GitHub Purple */ }
+.social-links a .fa-facebook:hover { color: #1877F2; /* Facebook Blue */ }
+.social-links a .fa-phone:hover { color: #28a745; /* Green for phone */ }
+
+
+/* "Advanced Tech Design" Placeholder (apply to #main-footer or a child div) */
+.tech-design {
+    position: relative; /* Needed for pseudo-elements */
+    overflow: hidden; /* Hide anything spilling out */
+    /* Example: Subtle scanline effect or glowing edges */
+    /* background: radial-gradient(circle at top left, var(--background-dark) 0%, var(--background-dark-alt) 70%, var(--accent-color) 100%); */
+    /* box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.5); */
+    /* border: 1px solid rgba(var(--accent-rgb), 0.3); */
+    /* Add futuristic font if you have one */
+    /* font-family: 'Sci-Fi Font', sans-serif; */
+}
+
+/* Example: Pseudo-element for a subtle tech line */
+.tech-design::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* Thin line */
+    background: linear-gradient(to right, transparent, var(--accent-color), transparent);
+    animation: pulseLine 3s infinite alternate ease-in-out;
+    opacity: 0.7;
+    z-index: 1;
+}
+
+@keyframes pulseLine {
+    0% { transform: scaleX(0); opacity: 0; }
+    50% { transform: scaleX(1); opacity: 0.7; }
+    100% { transform: scaleX(0); opacity: 0; }
+}
+
+
+/* ==========================================================================
+ * 10. Responsive Styles (Media Queries)
+ * ========================================================================== */
 
 @media (max-width: 768px) {
-    /* REMOVED: This media query was forcing 2 columns for .payment-links-grid,
-       but the new minmax(100px, 1fr) might handle it better for 3 columns.
-       We'll let the main grid rule manage it.
-       If you still want a strict 2-column on tablets, you can uncomment/adjust this. */
-    /* .payment-links-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 15px;
-    } */
+    section {
+        padding: var(--spacing-xl); /* Slightly less padding on tablets */
+    }
 
+    /* Projects Grid */
+    .project-grid {
+        gap: var(--spacing-xl);
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+
+    .skills-grid,
+    .blog-post-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: var(--spacing-xl);
+    }
+
+    .payment-links-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-lg);
+    }
+
+    .qr-note {
+        flex-direction: column; /* Stack note parts on smaller tablets */
+        align-items: flex-start;
+    }
     .qr-note .note-part {
-        min-width: 45%; /* Two columns for the note on tablets */
+        min-width: 100%;
+        text-align: left; /* No !important needed due to flex-direction column */
+    }
+
+    .main-nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-md);
+    }
+
+    .nav-button {
+        width: 100%;
+    }
+
+    /* Floating Contact button adjustment for smaller screens */
+    #floating-contact-btn {
+        bottom: var(--spacing-lg);
+        right: var(--spacing-lg);
+    }
+    .floating-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    .floating-button:hover {
+        width: 140px;
+    }
+
+    /* Chatbot adjustments for tablets */
+    #chatbot-toggle-button {
+        bottom: var(--spacing-lg); /* Match floating contact button */
+        right: calc(var(--spacing-lg) + 60px); /* Adjust spacing from contact button */
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+
+    .chatbot-popup {
+        bottom: 70px; /* Above the smaller toggle button */
+        right: var(--spacing-lg);
+        width: 320px; /* Slightly narrower */
+        height: 400px; /* Slightly shorter */
+    }
+
+    /* Footer Responsive considerations */
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .social-links a {
+        font-size: 1.8em;
+    }
+    #main-footer {
+        padding: 30px 15px;
     }
 }
 
@@ -417,30 +1458,80 @@ ul {
     }
 
     section {
-        padding: 20px;
+        padding: var(--spacing-xl); /* Consistent with 768px breakpoint */
+    }
+
+    /* Projects Grid - Force single column on very small screens */
+    .project-grid {
+        gap: var(--spacing-lg);
+        grid-template-columns: 1fr;
+    }
+    .skills-grid,
+    .blog-post-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
     }
 
     /* Further adjust payment options for very small screens */
-    /* REMOVED: This media query was adjusting payment-links-grid for phones.
-       The main grid rule with minmax(100px, 1fr) should now aim for 3 columns
-       even on smaller phones, making them narrower.
-       If you want them to stack on very small phones, this would need to be re-added. */
-    /* .payment-links-grid {
+    .payment-links-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        gap: 10px;
-    } */
+        gap: var(--spacing-md);
+    }
 
     .qr-code-img {
-        max-width: 100px; /* Make QR codes a bit smaller on tiny screens */
+        max-width: 100px;
     }
 
     #payment-options-container {
-        max-width: 90%; /* Allow it to take more width on small screens */
+        max-width: 90%;
     }
 
-    /* Force the note parts to stack vertically on small phones */
-    .qr-note .note-part {
-        min-width: 100%; /* Each part takes full width */
-        text-align: left !important; /* Ensure left alignment when stacked */
+    /* Floating Contact button adjustment for smallest screens */
+    #floating-contact-btn {
+        bottom: var(--spacing-md);
+        right: var(--spacing-md);
+    }
+    .floating-button {
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+    .floating-button:hover {
+        width: 130px;
+    }
+
+    /* Chatbot adjustments for mobile */
+    #chatbot-toggle-button {
+        bottom: var(--spacing-md); /* Match floating contact button */
+        right: calc(var(--spacing-md) + 55px); /* Adjust spacing from contact button */
+        width: 45px;
+        height: 45px;
+        font-size: 1.4rem;
+    }
+
+    .chatbot-popup {
+        width: 90%; /* Take up more width on small screens */
+        height: 70%; /* Adjust height to fit more of the screen */
+        bottom: calc(var(--spacing-md) + 55px); /* Position above the button */
+        left: 5%; /* Center it roughly */
+        right: 5%; /* Center it roughly */
+    }
+
+    .chatbot-body {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .chatbot-footer {
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    #chatbot-input {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
+
+    #chatbot-send-button {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
     }
 }
